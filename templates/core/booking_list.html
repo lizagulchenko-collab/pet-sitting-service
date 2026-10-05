@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking list{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h2>📅 Service booking</h2>
+        <a href="{% url 'pet_sitting:booking-create' %}" class="btn btn-primary">+</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Pet</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in booking_list %}
+                <tr>
+                    <td><strong>{{ booking.pet.name }}</strong></td>
+                    <td>{{ booking.start_date|date:"d.m.Y" }}</td>
+                    <td>{{ booking.end_date|date:"d.m.Y" }}</td>
+                    <td>{{ booking.total_price }} грн</td>
+                    <td>
+                        <span style="background-color: var(--color-cream-bg); padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; border: 1px solid var(--color-primary);">
+                            {{ booking.get_status_display|default:booking.status }}
+                        </span>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" style="text-align: center; color: #888;">You don't have active orders</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% include 'includes/pagination.html' %}
+</div>
+{% endblock %}
