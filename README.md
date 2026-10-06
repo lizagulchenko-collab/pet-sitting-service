@@ -14,3 +14,6 @@
 <img width="1917" height="966" alt="Знімок екрана 2026-10-05 164514" src="https://github.com/user-attachments/assets/715930af-51af-48bd-b04a-f8999f1ec0e3" />
 <img width="1895" height="970" alt="Знімок екрана 2026-10-05 164534" src="https://github.com/user-attachments/assets/ebde4ebc-84eb-4d66-bd4e-10597f62f226" />
 <img width="1919" height="852" alt="Знімок екрана 2026-10-05 164414" src="https://github.com/user-attachments/assets/be22e449-efe5-4b29-b09c-cf0045364786" />
+User for login:
+email: user@gmail.com
+password: 1234567890
