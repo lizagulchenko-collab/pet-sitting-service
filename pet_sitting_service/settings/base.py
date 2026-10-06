@@ -1,15 +1,12 @@
+import os
 from pathlib import Path
 
-from django.conf.global_settings import AUTH_USER_MODEL
+from django.conf.global_settings import AUTH_USER_MODEL, STATIC_ROOT
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-SECRET_KEY = 'django-insecure-(iv-*csu!1t3cgl)b2f#-np)t8+f$hvb7=!)5n76@h4pnk+79l'
-
-DEBUG = True
-
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "*"]
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-(iv-*csu!1t3cgl)b2f#-np)t8+f$hvb7=!)5n76@h4pnk+79l")
 
 
 INSTALLED_APPS = [
@@ -52,14 +49,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pet_sitting_service.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -89,6 +78,7 @@ USE_TZ = True
 
 
 STATIC_URL = "static/"
+STATIC_ROOT = "staticfiles/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
