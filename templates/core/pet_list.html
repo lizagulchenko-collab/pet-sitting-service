@@ -3,44 +3,47 @@
 {% block title %}Pet list{% endblock %}
 
 {% block content %}
-<div class="card">
+  <div class="card">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <h2>🐾 My pets</h2>
-        <a href="{% url 'pet_sitting:pet-create' %}" class="btn btn-primary">+</a>
+      <h2>🐾 My pets</h2>
+      <a href="{% url 'core:pet-create' %}" class="btn btn-primary">+</a>
     </div>
 
     <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Animal type</th>
-                <th>Age</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pet in pet_list %}
-                <tr>
-                    <td>
-                        <a href="{% url 'pet_sitting:pet-detail' pet.pk %}" style="color: var(--color-primary-dark); font-weight: bold; text-decoration: none;">
-                            {{ pet.name }}
-                        </a>
-                    </td>
-                    <td>{{ pet.animal_type|default:"—" }}</td>
-                    <td>{{ pet.age }} р.</td>
-                    <td style="display: flex; gap: 8px;">
-                        <a href="{% url 'pet_sitting:pet-update' pet.pk %}" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">Edit</a>
-                        <a href="{% url 'pet_sitting:pet-delete' pet.pk %}" class="btn btn-danger" style="padding: 6px 12px; font-size: 0.85rem;">Delete</a>
-                    </td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="4" style="text-align: center; color: #888;">You don't have added pets</td>
-                </tr>
-            {% endfor %}
-        </tbody>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Animal type</th>
+        <th>Age</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for pet in pet_list %}
+        <tr>
+          <td>
+            <a href="{% url 'core:pet-detail' pet.pk %}"
+               style="color: var(--color-primary-dark); font-weight: bold; text-decoration: none;">
+              {{ pet.name }}
+            </a>
+          </td>
+          <td>{{ pet.animal_type|default:"—" }}</td>
+          <td>{{ pet.age }} р.</td>
+          <td style="display: flex; gap: 8px;">
+            <a href="{% url 'core:pet-update' pet.pk %}" class="btn btn-secondary"
+               style="padding: 6px 12px; font-size: 0.85rem;">Edit</a>
+            <a href="{% url 'core:pet-delete' pet.pk %}" class="btn btn-danger"
+               style="padding: 6px 12px; font-size: 0.85rem;">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4" style="text-align: center; color: #888;">You don't have added pets</td>
+        </tr>
+      {% endfor %}
+      </tbody>
     </table>
 
     {% include 'includes/pagination.html' %}
-</div>
+  </div>
 {% endblock %}

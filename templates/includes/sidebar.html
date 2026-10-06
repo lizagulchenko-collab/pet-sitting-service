@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<aside class="sidebar">
+  <a href="{% url 'core:index' %}" class="brand">🐾 Pet Sitting</a>
+  <nav>
+    <ul>
+      <li>
+        <a href="{% url 'core:index' %}">Home</a>
+      </li>
+
+      {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'core:pet-list' %}">My pets</a>
+        </li>
+        <li>
+          <a href="{% url 'core:booking-list' %}">Orders</a>
+        </li>
+        <li>
+          <a href="{% url 'core:animaltype-list' %}">Animal types</a>
+        </li>
+        <li style="margin-top: 20px;">
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary" style="width: 100%; cursor: pointer;">
+              Log out ({{ user.first_name }})
+            </button>
+          </form>
+        </li>
+      {% else %}
+        <li>
+          <a href="{% url 'login' %}">Log in</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+</aside>

@@ -3,19 +3,19 @@
 {% block title %}{% if object %}Edit pet{% else %}Create pet{% endif %}{% endblock %}
 
 {% block content %}
-<div style="max-width: 600px; margin: 0 auto;">
+  <div style="max-width: 600px; margin: 0 auto;">
     <div class="card">
-        <h2>{% if object %}Edit pet: {{ object.name }}{% else %}Create new pet{% endif %}</h2>
-        
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <button type="submit" class="btn btn-primary" style="flex: 1;">Save</button>
-                <a href="{% url 'pet_sitting:pet-list' %}" class="btn btn-secondary" style="flex: 1;">Cancel</a>
-            </div>
-        </form>
+      <h2>{% if object %}Edit pet: {{ object.name }}{% else %}Create new pet{% endif %}</h2>
+
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button type="submit" class="btn btn-primary" style="flex: 1;">Save</button>
+          <a href="{% url 'core:pet-list' %}" class="btn btn-secondary" style="flex: 1;">Cancel</a>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
 {% endblock %}

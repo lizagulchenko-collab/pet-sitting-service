@@ -3,29 +3,29 @@
 {% block title %}Головна — Pet Sitting Service{% endblock %}
 
 {% block content %}
-<div class="card">
+  <div class="card">
     <h1>Welcome to the Pet Sitting Service! 🐾</h1>
-</div>
+  </div>
 
-{% if user.is_authenticated %}
-<div style="display: flex; gap: 20px; flex-wrap: wrap;">
-    <div class="card" style="flex: 1; min-width: 280px;">
+  {% if user.is_authenticated %}
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+      <div class="card" style="flex: 1; min-width: 280px;">
         <h3>🐾 Your pets</h3>
         <p style="margin-bottom: 16px;">Total signed in: <strong>{{ num_pets|default:"0" }}</strong></p>
-        <a href="{% url 'pet_sitting:pet-list' %}" class="btn btn-secondary">Open list</a>
-    </div>
+        <a href="{% url 'core:pet-list' %}" class="btn btn-secondary">Open list</a>
+      </div>
 
-    <div class="card" style="flex: 1; min-width: 280px;">
+      <div class="card" style="flex: 1; min-width: 280px;">
         <h3>📅 Your orders</h3>
         <p style="margin-bottom: 16px;">Total orders: <strong>{{ num_bookings|default:"0" }}</strong></p>
-        <a href="{% url 'pet_sitting:booking-list' %}" class="btn btn-secondary">Open orders</a>
+        <a href="{% url 'core:booking-list' %}" class="btn btn-secondary">Open orders</a>
+      </div>
     </div>
-</div>
-{% else %}
-<div class="card" style="background-color: var(--color-cream-bg); text-align: center;">
-    <h3 style="margin-bottom: 12px;">Want to make order?</h3>
-    <p style="margin-bottom: 20px;">Please, log into your cabinet</p>
-    <a href="{% url 'login' %}" class="btn btn-primary">Log in</a>
-</div>
-{% endif %}
+  {% else %}
+    <div class="card" style="background-color: var(--color-cream-bg); text-align: center;">
+      <h3 style="margin-bottom: 12px;">Want to make order?</h3>
+      <p style="margin-bottom: 20px;">Please, log into your cabinet</p>
+      <a href="{% url 'login' %}" class="btn btn-primary">Log in</a>
+    </div>
+  {% endif %}
 {% endblock %}

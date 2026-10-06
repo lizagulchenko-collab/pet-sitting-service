@@ -3,18 +3,18 @@
 {% block title %}Confirm delete{% endblock %}
 
 {% block content %}
-<div style="max-width: 500px; margin: 40px auto; text-align: center;">
+  <div style="max-width: 500px; margin: 40px auto; text-align: center;">
     <div class="card" style="border-color: #d9534f;">
-        <h2 style="color: #d9534f;">Delete pet</h2>
-        <p style="margin-bottom: 20px;">Do you really want to delete <strong>"{{ object.name }}"</strong>?</p>
-        
-        <form method="post">
-            {% csrf_token %}
-            <div style="display: flex; gap: 10px; justify-content: center;">
-                <button type="submit" class="btn btn-danger">Delete</button>
-                <a href="{% url 'pet_sitting:pet-list' %}" class="btn btn-secondary">Cancel</a>
-            </div>
-        </form>
+      <h2 style="color: #d9534f;">Delete pet</h2>
+      <p style="margin-bottom: 20px;">Do you really want to delete <strong>"{{ object.name }}"</strong>?</p>
+
+      <form method="post">
+        {% csrf_token %}
+        <div style="display: flex; gap: 10px; justify-content: center;">
+          <button type="submit" class="btn btn-danger">Delete</button>
+          <a href="{% url 'core:pet-list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
 {% endblock %}

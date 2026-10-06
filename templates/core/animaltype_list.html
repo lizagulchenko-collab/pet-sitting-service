@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Animal types{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h2>🐾 Available animal types</h2>
+        <a href="{% url 'core:animaltype-create' %}" class="btn btn-primary">+</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for animal_type in animal_types %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><strong>{{ animal_type.name }}</strong></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2" style="text-align: center; color: #888;">There is no animal types</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

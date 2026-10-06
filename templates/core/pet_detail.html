@@ -3,22 +3,22 @@
 {% block title %}Pet: {{ pet.name }}{% endblock %}
 
 {% block content %}
-<div style="max-width: 600px; margin: 0 auto;">
+  <div style="max-width: 600px; margin: 0 auto;">
     <div class="card">
-        <h2>🐾 {{ pet.name }}</h2>
-        <hr style="border: 0; border-top: 1px solid var(--color-cream-bg); margin-bottom: 16px;">
-        
-        <p style="margin-bottom: 8px;"><strong>Type:</strong> {{ pet.animal_type|default:"Not mentioned" }}</p>
-        <p style="margin-bottom: 8px;"><strong>Age:</strong> {{ pet.age }} р.</p>
-        {% if pet.description %}
-            <p style="margin-bottom: 16px;"><strong>Bio / Specifies:</strong> {{ pet.description }}</p>
-        {% endif %}
+      <h2>🐾 {{ pet.name }}</h2>
+      <hr style="border: 0; border-top: 1px solid var(--color-cream-bg); margin-bottom: 16px;">
 
-        <div style="display: flex; gap: 10px; margin-top: 24px;">
-            <a href="{% url 'pet_sitting:pet-update' pet.pk %}" class="btn btn-primary">Edit</a>
-            <a href="{% url 'pet_sitting:pet-delete' pet.pk %}" class="btn btn-danger">Delete</a>
-            <a href="{% url 'pet_sitting:pet-list' %}" class="btn btn-secondary" style="margin-left: auto;">Back to list</a>
-        </div>
+      <p style="margin-bottom: 8px;"><strong>Type:</strong> {{ pet.animal_type|default:"Not mentioned" }}</p>
+      <p style="margin-bottom: 8px;"><strong>Age:</strong> {{ pet.age }} р.</p>
+      {% if pet.description %}
+        <p style="margin-bottom: 16px;"><strong>Bio / Specifies:</strong> {{ pet.description }}</p>
+      {% endif %}
+
+      <div style="display: flex; gap: 10px; margin-top: 24px;">
+        <a href="{% url 'core:pet-update' pet.pk %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'core:pet-delete' pet.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'core:pet-list' %}" class="btn btn-secondary" style="margin-left: auto;">Back to list</a>
+      </div>
     </div>
-</div>
+  </div>
 {% endblock %}

@@ -5,8 +5,13 @@ from django.db import models
 class Animal(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         ordering = ["name"]
+        verbose_name = "Animal type"
+        verbose_name_plural = "Animal types"
 
 
 class CustomUserManager(BaseUserManager):
@@ -35,7 +40,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    phone_number = models.IntegerField(unique=True)
+    phone_number = models.CharField(max_length=20, unique=True)
     country = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     role = models.CharField(
@@ -68,3 +73,26 @@ class Pet(models.Model):
     training_required = models.BooleanField(default=False)
     walk_times = models.IntegerField(default=0)
     additional_info = models.TextField(null=True, blank=True)
+
+
+class Booking(models.Model):
+    class Status(models.TextChoices):
+        PENDING = "PENDING", "Pending"
+        CONFIRMED = "CONFIRMED", "Confirmed"
+        IN_PROGRESS = "IN_PROGRESS", "In_progress"
+        COMPLETED = "COMPLETED", "Completed"
+        CANCELLED = "CANCELED", "Canceled"
+        REJECTED = "REJECTED", "Rejected"
+
+    pet = models.ForeignKey(
+        Pet, on_delete=models.CASCADE, related_name="pet"
+    )
+    staff = models.ForeignKey(
+        Staff, on_delete=models.DO_NOTHING, related_name="booking", null=True, blank=True
+    )
+    start_date = models.DateField()
+    end_date = models.DateField()
+    status = models.CharField(
+        max_length=20, choices=Status.choices, default=Status.PENDING
+    )
+    total_price = models.IntegerField()

@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Logged out{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 40px auto; text-align: center;">
+    <div class="card">
+        <h2>You successfully logged out 🐾</h2>
+        <p style="margin: 16px 0;">Thank you for using our service</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Log in</a>
+    </div>
+</div>
+{% endblock %}
