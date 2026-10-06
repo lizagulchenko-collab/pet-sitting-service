@@ -17,3 +17,4 @@
 User for login:
 email: user@gmail.com
 password: 1234567890
+URL to se the project: https://pet-sitting-service.onrender.com/
